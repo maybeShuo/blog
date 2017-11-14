@@ -50,10 +50,10 @@ if(process.env.NODE_EVN !== 'production'){
     app.use(WebpackHotMiddleware(compiler));
 }
 
-app.listen(port,(err)=>{
-    if(err){
+app.listen(port, (err) => {
+    if(err) {
         console.error(err)
-    }else{
+    } else {
         console.log(`===>open http://${config.host}:${config.port} in a browser to view the app`);
     }
 });
