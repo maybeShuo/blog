@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import PureRenderMixiin from 'react-addons-pure-render-mixin'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import {
     BrowserRouter as Router,
     Route,
@@ -8,56 +10,41 @@ import {
 } from 'react-router-dom'
 import './reset.css'
 
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
-import {actions} from '../reducers'
-import Admin from "./admin/Admin";
-import Front from './front/Front'
-import animationStyle from '../lib/animate.css'
-const {clear_msg, user_auth} = actions;
+import style from './style.css'
+import { Detail } from './detail'
+import { Home } from './home'
+import Banner from "../components/banner/Banner"
+
+
 
 class AppIndex extends Component {
 
     constructor(props) {
-        super(props);
-        this.openNotification = this.openNotification.bind(this);
-        this.shouldComponentUpdate = PureRenderMixiin.shouldComponentUpdate.bind(this);
-    }
-
-    openNotification(type, message) {
-        let that = this;
-        notification[type]({
-            message: message,
-            onClose: () => {
-                that.props.clear_msg();
-            }
-        });
-        that.props.clear_msg();
-    };
-
-    render() {
-        let {isFetching} = this.props;
-        return (
-            <Router>
-                <div>
-                    <Switch>
-                        <Route path='/404' component={NotFound}/>
-                        <Route path='/admin' component={Admin}/>
-                        <Route component={Front}/>
-                    </Switch>
-                    {isFetching && <Loading/>}
-                    {this.props.notification && this.props.notification.content ?
-                        (this.props.notification.type === 1 ?
-                            this.openNotification('success', this.props.notification.content) :
-                            this.openNotification('error', this.props.notification.content)) :
-                        null}
-                </div>
-            </Router>
-        )
+        super(props)
+        this.shouldComponentUpdate = PureRenderMixiin.shouldComponentUpdate.bind(this)
+        this.state = {
+            count: 1
+        }
     }
 
     componentDidMount() {
-        this.props.user_auth();
+        
+    }
+
+    render() {
+        return (
+            <Router>
+                <div className={style.app}>
+                    <Banner/>
+                    <button onClick={() => this.setState({ count: this.state.count + 1 })}>IndexRoot</button>
+                    <h2>{this.state.count}</h2>
+                    <Switch>
+                        <Route exact path='/' component={Home}/>
+                        <Route path='/detail' component={Detail}/>
+                    </Switch>
+                </div>
+            </Router>
+        )
     }
 
 }
@@ -65,16 +52,13 @@ class AppIndex extends Component {
 
 function mapStateToProps(state) {
     return {
-        notification: state.globalState.msg,
-        isFetching: state.globalState.isFetching,
-        userInfo: state.globalState.userInfo,
+        
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        clear_msg: bindActionCreators(clear_msg, dispatch),
-        user_auth: bindActionCreators(user_auth, dispatch)
+    
     }
 }
 

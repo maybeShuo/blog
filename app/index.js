@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { AppContainer } from 'react-hot-loader'
+import { AppContainer as HotContainer } from 'react-hot-loader'
 
 import configureStore from './configureStore'
 import IndexApp from './containers'
@@ -14,11 +14,11 @@ const mountNode = document.getElementById('app');
 const store = configureStore();
 
 render(
-    <AppContainer>
+    <HotContainer>
         <Provider store={store}>
-            <IndexApp/>
+            <IndexApp />
         </Provider>
-    </AppContainer>
+    </HotContainer>
     ,
     mountNode
 );
