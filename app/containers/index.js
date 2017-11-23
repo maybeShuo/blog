@@ -8,9 +8,9 @@ import {
     Switch,
     Redirect
 } from 'react-router-dom'
-import './reset.css'
+import './reset.less'
 
-import style from './style.css'
+import style from './style.less'
 import { Detail } from './detail'
 import { Home } from './home'
 import Banner from "../components/banner/Banner"
@@ -36,7 +36,6 @@ class AppIndex extends Component {
             <Router>
                 <div className={style.app}>
                     <Banner/>
-                    <button onClick={() => this.setState({ count: this.state.count + 1 })}>IndexRoot</button>
                     <h2>{this.state.count}</h2>
                     <Switch>
                         <Route exact path='/' component={Home}/>
