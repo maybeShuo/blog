@@ -2,6 +2,7 @@ import path from 'path'
 import Express from 'express'
 import favicon from 'serve-favicon'
 import httpProxy from 'http-proxy'
+import mongoose from 'mongoose'
 import compression from 'compression'
 import connectHistoryApiFallback from 'connect-history-api-fallback'
 import config from '../config/config'
@@ -57,3 +58,22 @@ app.listen(port, (err) => {
         console.log(`===>open http://${config.host}:${config.port} in a browser to view the app`)
     }
 })
+
+// mongoose.Promise = require('bluebird')
+// mongoose.connect(`mongodb://${config.dbHost}:${config.dbPort}/blog`, err => {
+//     if(err) {
+//         console.log(err, '数据库连接失败')
+//         return
+//     }
+
+//     console.log('数据库连接成功')
+        
+//     app.listen(port, (err) => {
+//         if(err) {
+//             console.error(err)
+//         } else {
+//             console.log(`===>open http://${config.host}:${config.port} in a browser to view the app`)
+//         }
+//     })
+    
+// })

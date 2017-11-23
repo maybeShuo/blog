@@ -10,7 +10,7 @@ let div = document.createElement('div');
 div.setAttribute('id', 'app');
 document.body.appendChild(div);
 
-const mountNode = document.getElementById('app');
+const mountNode = document.getElementById('app')
 const store = configureStore();
 
 render(
@@ -23,6 +23,6 @@ render(
     mountNode
 );
 
-if(module.hot && process.env.NODE_ENV !== 'production'){
+if(module.hot && process.env.NODE_ENV !== 'production') {
     module.hot.accept();
 }
