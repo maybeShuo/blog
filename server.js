@@ -21,7 +21,7 @@ const proxy = httpProxy.createProxyServer({
     target: targetUrl
 })
 
-app.use('/api', (req, res)=>{
+app.use('/api', (req, res) => {
     proxy.web(req, res, { target: targetUrl })
 })
 
